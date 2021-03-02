@@ -63,7 +63,7 @@ public class PecesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        consumirServicio();
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
@@ -86,8 +86,6 @@ public class PecesFragment extends Fragment {
 
 
 
-
-            consumirServicio();
 
             /*
             pecesList.add(new Peces("Sumatrano", "Tetra", 25.50f, 4.5f, "https://upload.wikimedia.org/wikipedia/commons/1/12/Tiger_Barb_700.jpg"));
@@ -117,6 +115,8 @@ public class PecesFragment extends Fragment {
 
         Call<List<Peces>> call = getCall.getAllPeces();
 
+
+
         call.enqueue(new Callback<List<Peces>>() {
 
 
@@ -127,9 +127,11 @@ public class PecesFragment extends Fragment {
                     Toast.makeText(getContext(), "Error en retrofit", Toast.LENGTH_LONG).show();
 
                 }else{
+
                     for(Peces p: response.body()){
                         pecesList.add(p);
                     }
+
                     /*
                     for(int i = 0; i < response.body().size(); i++){
                         pecesList.add(response.body().get(i));
@@ -145,7 +147,7 @@ public class PecesFragment extends Fragment {
                     }*/
 
 
-                    Toast.makeText(getContext(), pecesList.get(0).getNombre() , Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getContext(), pecesList.get(0).getNombre() , Toast.LENGTH_LONG).show();
                     
                 }
             }
